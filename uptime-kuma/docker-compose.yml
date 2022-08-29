@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  traefik-services-external:
+    name: traefik-services-external
+volumes:
+  uptime-kuma-data:
+    name: uptime-kuma-data
+
+services:
+  uptime-kuma:
+    image: 'louislam/uptime-kuma:1.18.0-beta.0'
+    container_name: 'uptime-kuma'
+    restart: unless-stopped
+    networks:
+      - traefik-services-external
+    labels:
+      - "traefik.docker.network=traefik-services-external"
+      - "traefik.http.routers.turbocev-monitor-router.rule=Host(`${KUMA_DASHBOARD_HOST}`)"
+      - "traefik.http.routers.turbocev-monitor-router.entrypoints=websecure"
+      - "traefik.http.routers.turbocev-monitor-router.tls=true"
+      - "traefik.http.routers.turbocev-monitor-router.tls.certresolver=letsencryptresolver"
+      - "traefik.http.services.turbocev-monitor-service.loadbalancer.server.port=3001"
+    volumes:
+      - 'uptime-kuma-data:/app/data'

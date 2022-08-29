@@ -1,0 +1,32 @@
+# Mongo-Sync Configurations
+
+local:
+  db: 'devmanager'
+  host:
+    port: 27017
+  access:
+    username: 'devmanager'
+    password: 'domergy.info.18'
+
+remote:
+  db: 'devmanager'
+  host:
+    url: 'URL'
+    port: 27017
+  access:
+    username: 'USERNAME'
+    password: 'SECRET'
+
+tunnel:
+  on: false
+  access:
+    username: 'remote_ssh_user'
+    port: 22
+
+# For now :local just
+# assumes DB is at localhost:port
+
+# All of the parameters above are required,
+# without them, the script will fail
+
+

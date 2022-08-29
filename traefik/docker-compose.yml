@@ -1,0 +1,36 @@
+version: '3'
+
+networks:
+  traefik-services-external:
+    name: traefik-services-external
+
+volumes:
+  traefik-data:
+    name: traefik-data
+
+
+services:
+  traefik:
+    image: traefik:2.7
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - traefik-services-external
+    ports:
+      - "80:80"
+      - "443:443"
+      #- "8080:8080"
+    volumes:
+      - "traefik-data:/letsencrypt"
+      - "./config/traefik.yml:/etc/traefik/traefik.yml"
+      - "./config/vhost/:/etc/traefik/vhost/"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    labels:
+      - "traefik.http.routers.http-catchall-router.rule=HostRegexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall-router.entrypoints=web"
+      - "traefik.http.routers.http-catchall-router.middlewares=redirect-to-https@file"
+      - "traefik.http.routers.traefik-dashboard-router.rule=Host(`${TRAEFIK_DASHBOARD_HOST}`)"
+      - "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure"
+      - "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencryptresolver"
+      - "traefik.http.routers.traefik-dashboard-router.service=api@internal"
+      - "traefik.http.routers.traefik-dashboard-router.middlewares=traefik-dashboard-auth@file"

@@ -1,0 +1,31 @@
+---
+- hosts: "*"
+  vars_files:
+    - group_vars/all.yml
+    - group_vars/apt.yml
+    - group_vars/docker.yml
+    - group_vars/networking.yml
+  become: yes
+  # Only for check
+  #ignore_errors: yes
+  roles:  # order is not random!
+    - role: nickjj.fail2ban
+      tags: fail2ban
+    - role: common
+      tags: common
+    - role: ufw
+      tags: ufw
+    - role: user
+      tags: user
+    - role: ssh
+      tags: ssh
+    - role: nickjj.docker
+      when: install_docker == true
+      tags: docker
+    - role: docker
+      when: install_docker == true
+      tags: docker
+    - role: networking
+      tags: networking
+    - role: reboot
+      tags: reboot

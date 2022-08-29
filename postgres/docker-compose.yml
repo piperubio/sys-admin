@@ -1,0 +1,18 @@
+# CONFIG ENVIRONMENT IN ".env" FILE
+version: "3.7"
+services:
+  postgres-backup:
+    build: .
+    image: docker-pg_dump:latest
+    container_name: postgres-backup
+    environment:
+      - PGUSER=${PGUSER}
+      - PGDB=${PGDB}
+      - PGHOST=${PGHOST}
+      - PGPORT=${PGPORT}
+      - PGPASSWORD=${PGPASSWORD}
+      - CRON_SCHEDULE=${CRON_SCHEDULE}
+      - DELETE_OLDER_THAN=${DELETE_OLDER_THAN}
+    volumes:
+      - /dumps
+    command: dump-cron

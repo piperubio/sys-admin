@@ -1,0 +1,35 @@
+# LOGS CONFIGS
+log:
+    level: ERROR
+
+# API 
+api:
+    dashboard: true
+    insecure: true
+
+# PROVIDERS
+providers:
+  file:
+    directory: /etc/traefik/vhost
+    watch: true
+    debugLogGeneratedTemplate: true
+  docker: {}
+
+#  ENTRYPOINTS
+entryPoints:
+    web:
+      address: ":80"
+    websecure:
+      address: ":443"
+    
+
+accessLog: {}
+
+# CERT RESOLVERS
+certificatesResolvers:
+  letsencryptresolver:
+    acme:
+      email: soporte@vboost.cl
+      storage: /letsencrypt/acme.json
+      httpChallenge:
+        entryPoint: web

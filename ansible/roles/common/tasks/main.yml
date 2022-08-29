@@ -1,0 +1,42 @@
+---
+- name: Upgrade packages
+  apt:
+    upgrade: full
+
+- name: Install packages
+  apt:
+    name: "{{packages_to_install}}"
+    state: present
+    update_cache: yes
+    allow_unauthenticated: yes
+  
+- name: Enable compress on logrotate
+  lineinfile:
+    dest: /etc/logrotate.conf
+    regexp: "^#?compress"
+    line: "compress"
+    state: present
+
+- name: Configure timezone
+  timezone:
+    name: "{{timezone}}"
+
+- name: Configure ntp client and restart it
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify:
+    - restart ntp
+    - restart cron
+
+- name: Make fail2ban work with ufw
+  lineinfile:
+    dest: "{{item}}"
+    regexp: "^banaction"
+    line: "banaction = ufw"
+    state: present
+  with_items:
+    - /etc/fail2ban/jail.conf
+    - /etc/fail2ban/jail.local
+  notify:
+    - restart fail2ban

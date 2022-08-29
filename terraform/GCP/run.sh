@@ -1,0 +1,1 @@
+docker run -it -v $(pwd):/terraform/templates -e GOOGLE_APPLICATION_CREDENTIALS=/terraform/templates/KEYS/service-account.json monitoring-platform/terraform $1

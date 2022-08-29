@@ -1,0 +1,20 @@
+---
+# general settings
+default_username: ubuntu
+ntpserver: pool.ntp.org
+timezone: Etc/UTC
+
+# default sshd port
+sshd_port: 22
+
+# generate random passwords for default user and root user
+default_password_generated: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters,digits,punctuation') }}"
+root_password_generated: "{{lookup('password', '/dev/null length=15 chars=ascii_letters,digits,punctuation')}}"
+
+# fail2ban
+fail2ban_loglevel: INFO
+fail2ban_services:
+  - name: ssh
+    port: ssh
+    filter: sshd
+    logpath: /var/log/auth.log

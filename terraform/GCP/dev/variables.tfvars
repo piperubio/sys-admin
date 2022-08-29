@@ -1,0 +1,6 @@
+project = "credible-list-289302"
+region  = "us-west1"
+zone    = "us-west1-b"
+name    = "terraform-test"
+machine_type = "e2-small"
+#instance_count = "2"
