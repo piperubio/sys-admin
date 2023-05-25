@@ -1,0 +1,5 @@
+---
+- src: geerlingguy.ntp
+- src: geerlingguy.security
+- src: geerlingguy.firewall
+- src: geerlingguy.docker

@@ -1,0 +1,28 @@
+---
+- hosts: "*"
+  vars_files:
+    - vars/main.yml
+    - vars/users.yml
+  become: yes
+  # Solo para --check
+  #ignore_errors: yes
+  tasks:
+    - name: Upgrade packages
+      apt:
+        upgrade: full
+      tags: upgrade
+  roles: 
+    - role: users
+      tags: users
+    - role: geerlingguy.ntp
+      tags: ntp
+    - role: geerlingguy.security
+      tags: [security, fail2ban, ssh, autoupdate]
+    - role: geerlingguy.firewall
+      tags: [security, firewall]
+    - role: geerlingguy.docker
+      tags: docker
+    - role: reboot
+      tags: reboot
+    
+    

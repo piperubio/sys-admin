@@ -1,0 +1,10 @@
+# Users
+default_username: DEFAULT_USERNAME
+
+# generate random passwords for default user and root user
+default_password_generated: "USER_PASSWORD"
+root_password_generated: "ROOT_PASSWORD"
+
+# Docker
+docker_users:
+  - "DEFAULT_USERNAME"
