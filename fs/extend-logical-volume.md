@@ -1,6 +1,8 @@
-1. Extender el disco en el proveedor cloud.
+1. Extender el disco en el proveedor cloud o máquina virtual.
 
-2. En el servidor ejecutar
+2. Puedes listar los discos con `lsblk` o `fdisk -l`
+
+3. En el servidor ejecutar
     ``` fdisk -l ```
      y buscar el disco extendido.
 

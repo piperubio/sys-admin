@@ -1,6 +1,6 @@
 ---
 # general settings
-default_username: ubuntu
+
 ntpserver: pool.ntp.org
 timezone: Etc/UTC
 

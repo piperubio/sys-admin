@@ -3,7 +3,7 @@
   vars_files:
     - group_vars/all.yml
     - group_vars/apt.yml
-    - group_vars/docker.yml
+    #- group_vars/docker.yml
     - group_vars/networking.yml
   become: yes
   # Only for check
@@ -19,12 +19,12 @@
       tags: user
     - role: ssh
       tags: ssh
-    - role: nickjj.docker
-      when: install_docker == true
-      tags: docker
-    - role: docker
-      when: install_docker == true
-      tags: docker
+    #- role: nickjj.docker
+      #when: install_docker == false
+      #tags: docker
+    #- role: docker
+      #when: install_docker == false
+      #tags: docker
     - role: networking
       tags: networking
     - role: reboot

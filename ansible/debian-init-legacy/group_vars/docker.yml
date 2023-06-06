@@ -4,7 +4,7 @@ install_docker: true
 
 # docker
 docker__channel: ["stable"]
-docker__version: "20.10.17"
+docker__version: "23.0.5"
 docker__state: "present"
 docker__compose_version: "2.9.0"
 docker__users: ["{{default_username}}"]
