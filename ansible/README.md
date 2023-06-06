@@ -127,23 +127,29 @@ $ ansible-galaxy install NOMBRE_COLECCIÓN|NOMBRE_ROL
 * `--skip-tags` para saltar las tareas con el tag especificado
 * `--become-user` para especificar el usuario con el que se ejecutarán las tareas
 
+### Ejemplos
 
-
-### Probar Sintaxis
+#### Probar Sintaxis
 
 ```bash
 $ ansible-playbook --syntax-check tu_playbook.yaml
 ```
 
-### Probar playbook
+#### Probar playbook
 
 ```bash
 $ ansible-playbook --check tu_playbook.yaml
 ```
 
-### Aplicar playbook
+#### Skip tags
 
 ```bash
-$ ansible-playbook --apply main.yml
+$ ansible-playbook --skip-tags "tag1,tag2" tu_playbook.yaml
+```
+
+#### Aplicar playbook
+
+```bash
+$ ansible-playbook main.yml
 ```
 

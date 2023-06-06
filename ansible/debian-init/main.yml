@@ -4,7 +4,7 @@
     - vars/main.yml
     - vars/users.yml
   become: yes
-  # Solo para --check
+  # Utilizar solo para la opción --check
   #ignore_errors: yes
   tasks:
     - name: Upgrade packages
