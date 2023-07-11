@@ -1,4 +1,9 @@
-#Security
+# NTP
+## https://galaxy.ansible.com/geerlingguy/ntp
+ntp_timezone: America/Santiago
+
+# Security
+## https://galaxy.ansible.com/geerlingguy/security
 
 security_ssh_password_authentication: "yes"
 
@@ -6,6 +11,5 @@ firewall_allowed_tcp_ports:
   - "22"
   - "80"
 
-# NTP
-ntp_timezone: America/Santiago
-
+# Docker
+## https://galaxy.ansible.com/geerlingguy/docker
