@@ -7,6 +7,9 @@ ntp_timezone: America/Santiago
 
 security_ssh_password_authentication: "yes"
 
+# Firewall
+## https://galaxy.ansible.com/geerlingguy/firewall
+
 firewall_allowed_tcp_ports:
   - "22"
   - "80"
